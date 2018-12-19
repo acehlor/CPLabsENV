@@ -1,7 +1,7 @@
 # About
 *Dockerfiles for setting up development environment for Customer Portal Labs.*
 
-It supports applications written in Ruby on Rails and NodeJS based on Fedora 23.
+It supports applications written in Ruby on Rails based on Fedora 23.
 
 *Note: The images are used to mimic development environment for Customer Portal Labs only. They are not supposed to apply in production.
 
@@ -28,7 +28,6 @@ id APP_OWNER
 ```shell
 cd labsEnv
 sed -i 's/RUN useradd -u 1000 labsapp/RUN useradd -u YOUR_USER_ID labsapp/g' labs-rails/Dockerfile
-sed -i 's/RUN useradd -u 1000 labsapp/RUN useradd -u YOUR_USER_ID labsapp/g' labs-node/Dockerfile
 ```
 
 ### Build
@@ -37,7 +36,6 @@ sed -i 's/RUN useradd -u 1000 labsapp/RUN useradd -u YOUR_USER_ID labsapp/g' lab
 cd labsEnv
 docker build -t fedora23-systemd ./systemd-fedora/
 docker build -t labs-rails ./labs-rails/
-docker build -t labs-nodejs ./labs-node/
 ```
 
 ## 3. Run your application
@@ -48,5 +46,5 @@ docker run --name "$appContainerName" -it -p $hostPort:$appPort -v "$appDir":/la
 Or run it with a MySQL container
 
 ```bash
-docker run --name "$appContainerName" -it -p $hostPort:$appPort -v "$appDir":/labsapp:Z --link "DBContainerName":mysql labs-rails /bin/bash
+docker run --name "$appContainerName" -it -p $hostPort:$appPort -v "$appDir":/labsapp:Z --link "$DBContainerName":mysql labs-rails /bin/bash
 ```
