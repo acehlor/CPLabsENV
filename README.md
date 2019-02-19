@@ -48,3 +48,8 @@ Or run it with a MySQL container
 ```bash
 docker run --name "$appContainerName" -it -p $hostPort:$appPort -v "$appDir":/labsapp:Z --link "$DBContainerName":mysql labs-rails /bin/bash
 ```
+
+ie:
+```bash
+docker run --name plcc -it -p 3000:3000 -v /home/fwang/work/labs/plcc:/labsapp:Z --link mysql_5.7:mysql labs-rails /bin/bash
+```

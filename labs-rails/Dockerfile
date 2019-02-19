@@ -1,7 +1,7 @@
 FROM fedora23-systemd
 
-RUN dnf install -y rubygem-rails ruby-devel mysql-devel postgresql-devel sqlite-devel systemtap-devel rpmdevtools nodejs
-#                      rails         ffi       mysql         sqlite         sqlite         ffi            ffi     js env
+RUN dnf install -y rubygem-rails ruby-devel mysql-devel postgresql-devel sqlite-devel systemtap-devel rpmdevtools nodejs git
+#                      rails         ffi       mysql         sqlite         sqlite         ffi            ffi     js env dependency
 
 RUN useradd -u 1000 labsapp
 RUN mkdir /labsapp
